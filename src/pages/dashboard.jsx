@@ -12,7 +12,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { FilterIcon } from 'lucide-react'
-import Error from '@/components/Error'
+import Error from '@/components/error'
 import useFetch from '@/hooks/use-fetch'
 import { UrlState } from '@/context'
 import { getUrls } from '@/db/apiUrls'
