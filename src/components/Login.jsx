@@ -11,7 +11,7 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { BeatLoader } from "react-spinners";
-import Error from "./error";
+import Error from "./Error";
 import * as Yup from 'yup'
 import useFetch from "@/hooks/use-fetch";
 import { login } from "@/db/apiAuth";
