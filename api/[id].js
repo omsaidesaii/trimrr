@@ -1,21 +1,20 @@
+import { getUrl } from "../src/db/apiUrls.js";  // adjust path if needed
+
 export default async function handler(req, res) {
-  const {
-    query: { id },
-  } = req;
+  const { id } = req.query;
 
-  // Replace this with your DB lookup (Supabase, etc.)
-  // For now, just test with a dummy redirect:
-  const db = {
-    abc123: "https://google.com",
-    xyz789: "https://github.com",
-  };
+  try {
+    // fetch the short link record from DB
+    const url = await getUrl({ id });
 
-  const url = db[id];
-
-  if (url) {
-    res.writeHead(302, { Location: url });
-    res.end();
-  } else {
-    res.status(404).send("Short link not found");
+    if (url?.original_url) {
+      res.writeHead(302, { Location: url.original_url });
+      res.end();
+    } else {
+      res.status(404).send("Short link not found in DB");
+    }
+  } catch (err) {
+    console.error("Redirect error:", err);
+    res.status(500).send("Server error");
   }
 }
